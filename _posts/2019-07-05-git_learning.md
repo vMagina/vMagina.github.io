@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Git学习之路"
-date:   2019-07-05 15:20:00 +0000
-categories: jekyll update
+date:   2019-07-05 15:20:00 
+tags:   工具
 ---
 <font size="5" color="#00dddd"> __git学习笔记__ :</font><br />
 
