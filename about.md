@@ -15,7 +15,7 @@ title: 关于我
 
 <p>
 
-这个博客fork自<a href="https://github.com/leopardpan/leopardpan.github.io" target="_blank" title="主题来源"><font color=orange>leopardpan</font></a>，嘿嘿嘿，后面尝试自己优化该主题。
+这个博客fork自<a href="https://github.com/leopardpan/leopardpan.github.io" target="_blank" title="主题来源"  style="color:orange">leopardpan</a>，嘿嘿嘿，后面尝试自己优化该主题。
 
 <p>
 
