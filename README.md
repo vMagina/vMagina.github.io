@@ -1,2 +1,0 @@
-# vMagina.github.io
-BLOG
