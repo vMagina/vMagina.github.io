@@ -3,26 +3,26 @@ title: coco
 subtitle: 个人站
 description: 欢迎来到我的个人站~
 # 头像里面的标题
-avatarTitle: leopardpan
+avatarTitle: vMagina
 # 头像里面的描述
-avatarDesc: iOS / 机器学习
+avatarDesc: 深度学习 / 机器学习
 url: "https://vMagina.github.io"
 
 # Comment
 comment:
-    disqus: leopard
+    disqus: coco
     # gitment: xxx // 需要修改 comments.html中的client_id和client_secret
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
 social:
-    weibo: 5366874726 
-    github: leopardpan
-    # zhihu: panpanleopard
+    weibo: 2741498310
+    github: vMagina
+    # zhihu: 
     # juejin: xxx
-    jianshu: 2ada30d8d0f7
+    # jianshu: 
     # twitter: 
-    mail: leopardpan@icloud.com
+    mail: work.coco.Charles@gmail.com
 
 
 # 百度统计 
@@ -41,7 +41,7 @@ ga:
 #
 #
 #  _post/ 下的文章更换成你自己的文章
-#  帮忙star一下，感谢~😆 地址： https://github.com/leopardpan/leopardpan.github.io
+#  帮忙star一下，感谢~😆 地址： https://github.com/vMagina/vMagina.github.io
 #
 #
 # 《--------------- 下面的信息可以自行选择是否修改 ------------------------》
