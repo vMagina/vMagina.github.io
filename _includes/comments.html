@@ -25,20 +25,19 @@
     <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
     
 
-  {% elsif site.comment.gitment %}
-    <div id="gitmentContainer"></div>
-    <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-    <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+  {% elsif site.comment.gitalk %}
+    <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
     <script>
-    var gitment = new Gitment({
+    var gitalk = new Gitalk({
         owner: 'vMagina',
         repo: 'https://vMagina.github.io',
-        oauth: {
-            client_id: 'f51420672d715aab6e5b',
-            client_secret: '3c88ae89a0f3e1b5eee74df254b24b0903425f6b',
-        },
+        clientID: 'f51420672d715aab6e5b',
+        clientSecret: '3c88ae89a0f3e1b5eee74df254b24b0903425f6b',
+        id: location.pathname
     });
-    gitment.render('gitmentContainer');
+    gitment.render('gitalk-container');
     </script>
   {% endif %}
 
