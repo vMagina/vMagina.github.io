@@ -28,7 +28,7 @@ tags:   工具
 <h3>操作命令:</h3>
 > `git add` : 将工作区中修改的文件添加至stage(暂存区)。  
 > `git commit (-m)` : 将stage中的修改提交至branch(分支)，-m用于注释。  
-> `git status` : 显示目前的状态，包括工作区，stage和branch等。
+> `git status` : 显示目前的状态，包括工作区，stage和branch等。  
 > `git diff` : 展示工作区中文件内容修改的现状(与上一次add/commit相比)。  
 > `git diff HEAD -- file` : 查看当前版本与工作区中文件内容的不同状况。  
 > `git log (--pretty=oneline)` : 日志，可按一行展示，最前面的id为commit(快照)id，即版本号。  
