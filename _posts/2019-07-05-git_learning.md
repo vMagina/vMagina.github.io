@@ -49,19 +49,22 @@ tags:   工具
 > `git log --graph --pretty=oneline --abbrev-commit` : 查看分支合并情况。  
 > `git merge --no-ff -m "comment" name` : 不使用Fast-forword模式合并，在合并完成后生成一个commit。(这种方式，在删除分支后，不会丢弃分支信息，便于从合并后的历史分支中观察出曾经的合并)  
 > `git stash` : 将现场的工作“储藏”起来，包括stage中的内容以及其对应的文件。(常用于修改bug时将现有的工作现场进行保存，以避免提交和修改未完成的文件内容，待完成后继续；workdirectory的修改情况和stage的内容是所有分支共享的)  
-> `git stash list` : 显示stash中的所有暂存的工作现场。    
+> `git stash list` : 显示stash中的所有暂存的工作现场。  
 > `git stash apply stash@{i}` : 将stash@{i}进行恢复。(恢复后不会删除stash中的内容，需要额外命令进行删除)  
 > `git stash drop stash@{i}` : 将stash@{i}从stash中删除。  
 > `git stash pop stash@{i}` : 将stash@{i}进行恢复并从stash中删除。(stash类似栈，0表示栈顶；以上若不使用stash@{i}参数则表示将栈顶进行操作)  
 > `git branch -D name` : 强制删除未合并的分支。  
 > `git remote` : 查看远程仓库名称。  
-> `git remote -v` : 查看远程库的信息，包括抓取和推送的地址。   
+> `git remote -v` : 查看远程库的信息，包括抓取和推送的地址。  
 > `git checkout -b branch-nanme origin/branch-name` : 创建并切换分支，同时将该分支远程库的分支建立链。  
 > `git push origin branch-name` : 向远程分支(若不提供后面两个参数，则将与本地当前分支相链接的远程分支进行操作)进行推送。  
 > `git pull origin branch-name` : 将远程分支(不提供后两个参数同上一条)抓取下来，并与本地分支进行合并。(需要在本地解决冲突后再向远程进行推送；若远程提前于本地，则会将本地更新至远程的状态)  
 > `git fetch origin branch-name` : 将远程库的分支抓取下来，但是不与本地分支进行merge。(<b style="color:blue">fetch+merge=pull</b>)  
 > `git branch --set-upstream-to=origin/branch-name branch-name` : 将远程分支与本地分支进行链接。(在抓取远程分支内容提示未建立链接时使用，然后再git pull抓取；或者不建立链接，通过 git pull remote-name branch-name进行抓取)  
-> `git rebase` : 将本地的未push的分叉整理成直线。  
+> `git rebase` : 衍合，将本地的未push的分叉整理成直线。  
+> `git rebase branch-name` : 将当前分支往指定分支上进行衍合。(默认情况下衍合完后HEAD还是指在操作前的分支上)  
+> `git rebase --continue` : 衍合发生冲突时，解决冲突后使用该命令继续衍合。  
+> `git rebase --abort` : 终止取消衍合。  
 > `git tag tag-name` : 在当前分支的最新提交点上建立一个标签。(即创建一个指向该提交点的指针)  
 > `git tag tag-name commit-id` : 对id提交点建立标签。  
 > `git tag` : 查看所有标签。  
