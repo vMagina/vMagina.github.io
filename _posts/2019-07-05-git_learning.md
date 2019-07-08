@@ -49,7 +49,7 @@ tags:   工具
 > `git log --graph --pretty=oneline --abbrev-commit` : 查看分支合并情况。  
 > `git merge --no-ff -m "comment" name` : 不使用Fast-forword模式合并，在合并完成后生成一个commit。(这种方式，在删除分支后，不会丢弃分支信息，便于从合并后的历史分支中观察出曾经的合并)  
 > `git stash` : 将现场的工作“储藏”起来，包括stage中的内容以及其对应的文件。(常用于修改bug时将现有的工作现场进行保存，以避免提交和修改未完成的文件内容，待完成后继续；workdirectory的修改情况和stage的内容是所有分支共享的)  
-> `git stash list` : 显示stash中的所有暂存的工作现场。 
+> `git stash list` : 显示stash中的所有暂存的工作现场。    
 > `git stash apply stash@{i}` : 将stash@{i}进行恢复。(恢复后不会删除stash中的内容，需要额外命令进行删除)  
 > `git stash drop stash@{i}` : 将stash@{i}从stash中删除。  
 > `git stash pop stash@{i}` : 将stash@{i}进行恢复并从stash中删除。(stash类似栈，0表示栈顶；以上若不使用stash@{i}参数则表示将栈顶进行操作)  
