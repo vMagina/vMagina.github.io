@@ -45,7 +45,7 @@ tags:   工具
 >   scaled_loss.backward()
 > ```
 > 在使用`amp.initialize`前需要将model放在GPU上，通过`.cuda()`或者`to(device)`的方式。并且，在此之前不能调用任何数据并行函数。  
-<p>
+<p></p>
 
 > `amp.initialize`中最关键的参数为`opt_level`，一共有四种设置方式：`O1`，`O2`，`O3`和`O4`。其中`O0`和`O3`分别是FP32和FP16的纯精度方式。这里引用官方的说法介绍`O1`和`O2`。
 > `O1`("conservative mixed precision")patches Torch functions to cast inputs according to a whitelist-blacklist model. FP16-friendly (Tensor Core) ops like gemms and convolutions run in FP16, while ops that benefit from FP32, like batchnorm and softmax, run in FP32. Also, dynamic loss scaling is used by default.   
