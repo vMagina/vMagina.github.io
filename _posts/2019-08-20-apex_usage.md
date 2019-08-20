@@ -23,19 +23,19 @@ tags:   工具
 > 在安装apex的时候，本以为依据官方的Quick Start分分钟完成，然鹅遇坑无数。  
 
 ～～～～～～～～～～～～～～～～ _(:з」∠)_ ～～～～～～～～～～～～～～～～
-> 为了获取最佳性能以及全部的功能体验，选择支持CUDA和C++扩展的方式进行安装：  
+> * 为了获取最佳性能以及全部的功能体验，选择支持CUDA和C++扩展的方式进行安装：  
 > `git clone https://github.com/NVIDIA/apex`  
 > `cd apex`  
 > `pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" ./`  
-> 为了方便，本文采用了conda的方式，其中python=3.6，cuda=9.0，pytorch=1.0。  
+> * 为了方便，本文采用了conda的方式，其中python=3.6，cuda=9.0，pytorch=1.0。  
 > <strong style='color:orange'>注意</strong>⚠️  
-> 在安装前，必须保证conda安装的pytorch的cuda版本要与机器上安装的cuda版本保持一致。同时，必须要gcc<6.0。  
-> 安装时遇到了个大问题，折腾了半天：`ERROR: compiler_compat/ld: cannot find -lpthread -lc`，找了半天发现好像是Anaconda的问题，可以在`apex`文件夹下的`setup.py`文件中的`ext_modules`中添加如下即可：  
+> * 在安装前，必须保证conda安装的pytorch的cuda版本要与机器上安装的cuda版本保持一致。同时，必须要gcc<6.0。  
+> * 安装时遇到了个大问题，折腾了半天：`ERROR: compiler_compat/ld: cannot find -lpthread -lc`，找了半天发现好像是Anaconda的问题，可以在`apex`文件夹下的`setup.py`文件中的`ext_modules`中添加如下即可：  
 > `extra_link_args=['-L/usr/lib/x86_64-linux-gnu/']`  
-> 耐心等待片刻，便可以享用apex啦。  
+> * 耐心等待片刻，便可以享用apex啦。  
 <h3>三行快速使用：</h3>
 
-> 通过一下三行快速使用混合精度计算：  
+> * 通过一下三行快速使用混合精度计算：  
 > ```
 > # Added after model and optimizer construction
 > model, optimizer = amp.initialize(model, optimizer, flags...)
@@ -44,13 +44,13 @@ tags:   工具
 > with amp.scale_loss(loss, optimizer) as scaled_loss:
 >   scaled_loss.backward()
 > ```
-> 在使用`amp.initialize`前需要将model放在GPU上，通过`.cuda()`或者`to(device)`的方式。并且，在此之前不能调用任何数据并行函数。  
+> * 在使用`amp.initialize`前需要将model放在GPU上，通过`.cuda()`或者`to(device)`的方式。并且，在此之前不能调用任何数据并行函数。  
 <p></p>
 
-> `amp.initialize`中最关键的参数为`opt_level`，一共有四种设置方式：`O1`，`O2`，`O3`和`O4`。其中`O0`和`O3`分别是FP32和FP16的纯精度方式。这里引用官方的说法介绍`O1`和`O2`。
-> `O1`("conservative mixed precision")patches Torch functions to cast inputs according to a whitelist-blacklist model. FP16-friendly (Tensor Core) ops like gemms and convolutions run in FP16, while ops that benefit from FP32, like batchnorm and softmax, run in FP32. Also, dynamic loss scaling is used by default.   
-> `O2`("fast mixed precision")casts the model to FP16, keeps batchnorms in FP32, maintains master weights in FP32, and implements dynamic loss scaling by default. (Unlike --opt-level O1, --opt-level O2 does not patch Torch functions.)   
-> 整个函数的参数虽然很多：  
+> * `amp.initialize`中最关键的参数为`opt_level`，一共有四种设置方式：`O1`，`O2`，`O3`和`O4`。其中`O0`和`O3`分别是FP32和FP16的纯精度方式。这里引用官方的说法介绍`O1`和`O2`。  
+> * `O1`("conservative mixed precision")patches Torch functions to cast inputs according to a whitelist-blacklist model. FP16-friendly (Tensor Core) ops like gemms and convolutions run in FP16, while ops that benefit from FP32, like batchnorm and softmax, run in FP32. Also, dynamic loss scaling is used by default.   
+> * `O2`("fast mixed precision")casts the model to FP16, keeps batchnorms in FP32, maintains master weights in FP32, and implements dynamic loss scaling by default. (Unlike --opt-level O1, --opt-level O2 does not patch Torch functions.)   
+> * 整个函数的参数虽然很多：  
 > ``` 
 > def initialize(
 >     models,
@@ -67,19 +67,20 @@ tags:   工具
 >     verbosity=1,
 >     ):
 > ```
-> 但是，其实基本设置`opt_level`即可，有些条件下会使其他参数无效。该参数的具体效果如下：  
+> * 但是，其实基本设置`opt_level`即可，有些条件下会使其他参数无效。该参数的具体效果如下：  
 
 | 设置 | O0 | O1 | O2 | O3|  
-| :------: | :------: | :------: | :------: | :------: |
+| :---: | :---: | :---: | :---: | :---: |
 |cast_model_type|torch.float32|None|torch.float16|torch.float16|
 |patch_torch_functions|False|True|False|False|
 |keep_batchnorm_fp32|None|None|True|False|
 |master_weights|False|None|True|False|
 |loss_scale|1.0|"dynamic"|"dynamic"|1.0|
-> 总体来说，使用了`O1`和`O2`方式，可以将显存开销真真实实地降低了接近一般，但是速度嘛好像没有变化。
-> 当然，使用的时候你的GPU必须支持FP16计算方式，不然也没法加速。
+
+> * 总体来说，使用了`O1`和`O2`方式，可以将显存开销真真实实地降低了接近一般，但是速度嘛好像没有变化。
+> * 当然，使用的时候你的GPU必须支持FP16计算方式，不然也没法加速。
 <h3>Todo：</h3>
 
-> 实验效果对比   
-> 添加apex所有功能的使用方式及实验效果   
-> ......
+> 1. 实验效果对比   
+> 2. 添加apex所有功能的使用方式及实验效果   
+> 3. ......
